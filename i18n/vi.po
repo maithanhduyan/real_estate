@@ -1,0 +1,18 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* real_estate
+# 
+# Translators:
+# Mai Thành Duy An, 2022
+# 
+#. module: real_estate
+#: model:ir.actions.act_window,name:real_estate.action_contacts
+#: model:ir.ui.menu,name:real_estate.menu_real_estate
+#: model:ir.ui.menu,name:real_estate.res_partner_menu_contacts
+msgid "RealEstate"
+msgstr "Bất động sản"
+
+#. module: real_estate
+#: model_terms:ir.actions.act_window,help:real_estate.action_contacts
+msgid "Create a new Asset"
+msgstr "Tạo một tài sản mới"
