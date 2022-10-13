@@ -1,37 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- module: real_estate -->
 <odoo>
-
-   <record id="action_contacts" model="ir.actions.act_window">
-        <field name="name">RealEstate</field>
+   <record id="action_assets" model="ir.actions.act_window">
+        <field name="name">Asset</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">res.partner</field>
-        <field name="view_mode">kanban,tree,form,activity</field>
-        <field name="search_view_id" ref="base.view_res_partner_filter"/>
-        <field name="context">{'default_is_company': True}</field>
+        <field name="res_model">asset.asset</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{}</field>
         <field name="help" type="html">
-          <p class="o_view_nocontent_smiling_face">
-            Create a new Asset
-          </p><p>
-            Odoo helps you track all activities related to your contacts.
-          </p>
+            <p class="o_view_nocontent_smiling_face">
+                Create a new asset
+            </p>
         </field>
     </record>
-    <record id="action_contacts_view_kanban" model="ir.actions.act_window.view">
-        <field name="sequence" eval="0"/>
-        <field name="view_mode">kanban</field>
-        <field name="view_id" ref="base.res_partner_kanban_view"/>
-        <field name="act_window_id" ref="action_contacts"/>
+
+    <!-- Tree View -->
+    <record id="action_assets_view_tree" model="ir.ui.view">
+        <field name="name">Asset Tree</field>
+        <field name="model">asset.asset</field>
+        <field name="arch" type="xml">
+            <tree string="Assets" sample="1" multi_edit="1">
+                <field name="name" string="Name"/>
+                <field name="photo" string="Photo"/>
+                <field name="note" string="Note"/>
+            </tree>
+        </field>
     </record>
-    <record id="action_contacts_view_tree" model="ir.actions.act_window.view">
-        <field name="sequence" eval="1"/>
-        <field name="view_mode">tree</field>
-        <field name="view_id" ref="base.view_partner_tree"/>
-        <field name="act_window_id" ref="action_contacts"/>
+    
+    <!-- Kanban View -->
+    <record id="action_assets_view_kanban" model="ir.ui.view">
+        <field name="name">Kanban Tree</field>
+        <field name="model">asset.asset</field>
+        <field name="arch" type="xml">
+            <kanban class="o_res_partner_kanban" sample="1">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="type"/>
+                <field name="photo"/>
+                <field name="note"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_image mr-1">
+                                <img t-att-src="kanban_image('asset.asset', 'image_128', record.id.raw_value)" alt="Asset" class="o_image_64_contain"/>
+                            </div>
+                            <div class="oe_kanban_details d-flex flex-column">
+                                <strong class="o_kanban_record_title oe_partner_heading"><field name="name"/></strong>
+                                <div class="o_kanban_tags_section oe_kanban_partner_categories"/>
+                                <ul>
+                                    <li t-if="record.type.raw_value"><field name="type"/></li>
+                                    <li t-if="record.note.raw_value"><field name="note"/></li>
+                                </ul>
+                                <div class="o_row">
+                                    <span class="oe_kanban_partner_links"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                    
+                </templates>
+            </kanban>
+        </field>
     </record>
-    <record id="action_contacts_view_form" model="ir.actions.act_window.view">
-        <field name="sequence" eval="2"/>
-        <field name="view_mode">form</field>
-        <field name="view_id" ref="base.view_partner_form"/>
-        <field name="act_window_id" ref="action_contacts"/>
-    </record>
+
+    
+    
 </odoo>
