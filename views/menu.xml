@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem name="RealEstate"
-        id="menu_real_estate"
-        sequence="20"
+    <!-- Top menu item -->
+    <menuitem id="real_estate_menu_root"
+        name="Real Estate"
+        sequence="1"
         web_icon="real_estate,static/description/icon.png"
-        groups="base.group_user,base.group_partner_manager"/>
-
-    <menuitem id="re_menu_contacts"
-        name="List"
-        action="action_contacts"
-        parent="menu_real_estate"
-        sequence="2"
         groups="base.group_user"/>
 
-    <menuitem id="re_menu_config"
-        name="Configuration"
-        parent="menu_real_estate"
-        groups="base.group_system"
-        sequence="3"/>
+    <menuitem id="real_estate_asset_menu"
+        name="Asset"
+        action="real_estate.action_assets"
+        parent="real_estate_menu_root"
+        sequence="2"/>
 
-  
+    <menuitem id="real_estate_product_menu"
+        name="Products"
+        parent="real_estate_menu_root"
+        sequence="2"/>
 
-    
+    <menuitem id="menu_product_template_action"
+        name="Products"
+        action="product.product_template_action" 
+        parent="real_estate_product_menu" 
+        sequence="1"/>
 
- 
 </odoo>
